@@ -1,0 +1,15 @@
+<p class="">
+  <a href="javascript:;" (click)="backToDefaultPage()">Back</a>
+</p>
+
+<div *ngIf="itemDetails" class="container">
+  <div class="card" style="width: 18rem;">
+  <img class="card-img-top"  [src]="itemDetails.Poster"  onError="this.src='../../../assets/no-image.png'" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{itemDetails.Title}}</h5>
+    <p class="card-text">Imdb id: {{itemDetails.imdbID}}</p>
+    <p class="card-text"> Date of release: {{ dateConverter(itemDetails.Year) | date: "yyyy/MM/dd" }}</p>
+    <p class="card-text">type: {{itemDetails.Type}}</p>
+  </div>
+</div>
+</div>

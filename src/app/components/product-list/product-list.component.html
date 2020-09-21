@@ -1,0 +1,56 @@
+<h2 class="text-center">Product List</h2>
+
+<ul class="nav nav-tabs nav-justified">
+  <li *ngFor="let item of imdbTypesCount" class="nav-item" class="active">
+    <a
+      class="nav-link active"
+      href="#{{ item.type }}"
+      (click)="getTypeList(item.type)"
+      data-toggle="tab"
+      >{{ item.type }}, ({{item.count}})</a
+    >
+  </li>
+</ul>
+
+<div *ngIf="filterArr" class="container row">
+  <button type="button" class="btn btn-primary" (click)="changeGridToList()">
+    <i class="fa fa-bars"></i> List
+  </button>
+  <button type="button" class="btn btn-primary" (click)="changeListToGrid()">
+    <i class="fa fa-th-large"></i> Grid
+  </button>
+  <button type="button" class="btn btn-primary" (click)="changeSort()">
+    <i class="fa fa-sort"></i> {{ ascSort ? 'Sort asc' : 'Sort Desc' }}
+  </button>
+</div>
+
+<div *ngIf="filterArr" class="container" [ngClass]="{ row: isGrid }">
+  <div *ngFor="let item of filterArr" class="card" style="width: 18rem">
+    <img
+      [src]="item.Poster"
+      class="card-img-top"
+      onError="this.src='../../../assets/no-image.png'"
+      alt="Card image cap"
+      (click)="onImgClicked(item)"
+    />
+    <div class="card-body">
+      <h5
+        *ngIf="!nameCurrentlyChanging"
+        (dblclick)="allowNameChange()"
+        class="card-title"
+      >
+        {{ item.Title }}
+      </h5>
+      <input
+        #nameInput
+        *ngIf="nameCurrentlyChanging"
+        (blur)="changeName(item, nameInput.value)"
+        [value]="item.Title"
+        class="card-title"
+      />
+      <p class="card-text">
+        Date of release: {{ dateConverter(item.Year) | date: "yyyy/MM/dd" }}
+      </p>
+    </div>
+  </div>
+</div>

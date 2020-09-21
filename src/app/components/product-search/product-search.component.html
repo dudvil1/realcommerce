@@ -1,0 +1,12 @@
+<div class="container search-style">
+  <input
+  [(ngModel)]="searchForm"
+    #search
+    class="form-control"
+    placeholder="Search"
+    (keyup)="searchInput(search.value)"
+  />
+  <button *ngIf="searchForm" type="button" class="btn btn-primary btn-sm" (click)="clearSearch(search.value)">
+    Clear
+  </button>
+</div>

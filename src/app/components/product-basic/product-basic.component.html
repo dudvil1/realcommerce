@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-sm-4">
+    <app-product-list
+      [imdbTypesCount]="imdbTypesCount"
+      [imdbItemsArr]="filterArr"
+    ></app-product-list>
+  </div>
+  <div class="col-sm-4 btn-style">
+    <button type="button" class="btn btn-secondary" (click)="refresh()">
+      Refresh
+    </button>
+  </div>
+  <div class="col-4">
+    <app-product-search
+      (filtered)="onfilterArr($event)"
+      [imdbItemsArr]="imdbItemsArr"
+    ></app-product-search>
+  </div>
+</div>
